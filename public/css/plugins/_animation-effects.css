@@ -1,0 +1,8 @@
+.animation__shake {
+  -webkit-animation: shake 1500ms;
+          animation: shake 1500ms;
+}
+.animation__wobble {
+  -webkit-animation: wobble 1500ms;
+          animation: wobble 1500ms;
+}

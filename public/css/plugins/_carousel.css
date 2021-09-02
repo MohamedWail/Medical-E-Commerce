@@ -1,0 +1,21 @@
+.carousel-control-prev .carousel-control-custom-icon {
+  margin-left: -20px;
+}
+.carousel-control-next .carousel-control-custom-icon {
+  margin-right: 20px;
+}
+.carousel-control-custom-icon > .fa,
+.carousel-control-custom-icon > .fas,
+.carousel-control-custom-icon > .far,
+.carousel-control-custom-icon > .fab,
+.carousel-control-custom-icon > .fal,
+.carousel-control-custom-icon > .fad,
+.carousel-control-custom-icon > .svg-inline--fa,
+.carousel-control-custom-icon > .ion {
+  display: inline-block;
+  font-size: 40px;
+  margin-top: -20px;
+  position: absolute;
+  top: 50%;
+  z-index: 5;
+}
