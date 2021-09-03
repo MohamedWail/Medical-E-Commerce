@@ -38,8 +38,8 @@
                                 <div class="sb-nav-link-icon"><i class="fab fa-product-hunt"></i></div>
                                 Products
                             </a>
-                            <a class="nav-link" href="index.html">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            <a class="nav-link" href="{{ route('contact.index') }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-address-book"></i></div>
                                 Contact
                             </a>
                             <a class="nav-link" href="index.html">

@@ -6,7 +6,8 @@ use App\Http\Controllers\Api\ApiRegisterController;
 use App\Http\Controllers\Api\ApiCategoryController;
 use App\Http\Controllers\Api\ApiProductController;
 use App\Http\Controllers\Api\ApiCartController;
-
+use App\Http\Controllers\Api\ApiContactController;
+use App\Http\Controllers\Api\ApiProfileController;
 
 
 
@@ -33,5 +34,11 @@ Route::get('product', [ApiProductController::class, 'index']);
 Route::post('add-to-cart', [ApiCartController::class, 'addToCart']);
 Route::post('get-cart-content', [ApiCartController::class, 'getCartContent']);
 Route::post('remove-from-cart', [ApiCartController::class, 'removeFromCart']);
+Route::get('contact', [ApiContactController::class, 'index']);
+Route::post('add-profile', [ApiProfileController::class, 'addProfile']);
+Route::post('get-profile', [ApiProfileController::class, 'getProfile']);
+
+
+
 
 

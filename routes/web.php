@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\dashboard\HomeController;
 use App\Http\Controllers\dashboard\CategoryController;
 use App\Http\Controllers\dashboard\ProductController;
+use App\Http\Controllers\dashboard\ContactController;
+
 
 
 
@@ -27,6 +29,8 @@ Route::middleware(['auth'])->group(function () {
     Route::patch('/category/{id}', [CategoryController::class, 'update'])->name('category.update');
     Route::delete('/category/{id}/delete', [CategoryController::class, 'destroy'])->name('category.destroy');
     Route::resource('/product', ProductController::class);
+    Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
+    Route::post('/store-contact', [ContactController::class, 'store'])->name('contact.store');
 
 
 
