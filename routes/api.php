@@ -31,6 +31,7 @@ Route::post('register', [ApiRegisterController::class, 'register']);
 Route::post('login', [ApiRegisterController::class, 'login']);
 Route::get('category', [ApiCategoryController::class, 'index']);
 Route::get('product', [ApiProductController::class, 'index']);
+Route::post('product', [ApiProductController::class, 'search']);
 Route::post('add-to-cart', [ApiCartController::class, 'addToCart']);
 Route::post('get-cart-content', [ApiCartController::class, 'getCartContent']);
 Route::post('remove-from-cart', [ApiCartController::class, 'removeFromCart']);

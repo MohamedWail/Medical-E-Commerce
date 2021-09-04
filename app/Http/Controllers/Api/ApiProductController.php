@@ -18,4 +18,10 @@ class ApiProductController extends BaseController
 
         return $this->sendResponse($products, 'Products obtained successfully.', '200');
     }
+
+    public function search(Request $request) {
+        $products = Product::latest()->filter()->get();
+        return $this->sendResponse($products, 'Products found successfully.', '200');
+
+    }
 }
