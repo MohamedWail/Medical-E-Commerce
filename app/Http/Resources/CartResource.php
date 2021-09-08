@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Support\Facades\URL;
 
 
 class CartResource extends JsonResource
@@ -17,11 +18,12 @@ class CartResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'rowId' => $this->rowId,
-            'product_id' => $this->id,
+            // 'rowId' => $this->rowId,
+            // 'product_id' => $this->id,
             'name' => $this->name,
             'qty' => $this->qty,
             'price' => $this->price * $this->qty,
+            'image' => URL::to('/').$this->model->path
         ];
     }
 }

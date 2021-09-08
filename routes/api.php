@@ -38,5 +38,6 @@ Route::post('add-to-cart', [ApiCartController::class, 'addToCart']);
 Route::post('get-cart-content', [ApiCartController::class, 'getCartContent']);
 Route::post('remove-from-cart', [ApiCartController::class, 'removeFromCart']);
 Route::get('contact', [ApiContactController::class, 'index']);
+Route::get('reach-us', [ApiContactController::class, 'reachUs']);
 Route::post('add-profile', [ApiProfileController::class, 'addProfile']);
 Route::post('get-profile', [ApiProfileController::class, 'getProfile']);
