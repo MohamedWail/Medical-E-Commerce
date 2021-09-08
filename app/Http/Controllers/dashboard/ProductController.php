@@ -47,7 +47,10 @@ class ProductController extends Controller
             'description'=>'required',
             'price'=>'required',
             'path'=>'sometimes|nullable',
-            'path.*'=>'image|mimes:jpeg,png,jpg,gif,svg|max:5120'
+            'path.*'=>'image|mimes:jpeg,png,jpg,gif,svg|max:5120',
+            'logo_url' =>'sometimes|nullable',
+            'logo_url.*'=>'image|mimes:jpeg,png,jpg,gif,svg|max:5120',
+            'is_hot_deal' => 'boolean|sometimes|nullable'
         ]);
 
         if ($validator->fails()) {
@@ -66,8 +69,15 @@ class ProductController extends Controller
             request()->file('path')->move(public_path('assets/images/products'), $filename);
         }
 
+        if($request->hasFile('logo_url')){
+            $filename = time() . '.' . $request->logo_url->getClientOriginalExtension();
+            $logoName= '/assets/images/logo_product/'. $filename;
+            request()->file('logo_url')->move(public_path('assets/images/logo_product'), $filename);
+        }
+
         $data = $request->all();
         $data['path']=$imageName;
+        $data['logo_url']=$logoName;
 
 
         Product::create($data);
@@ -114,7 +124,10 @@ class ProductController extends Controller
             'description'=>'sometimes',
             'price'=>'sometimes',
             'path'=>'sometimes|nullable',
-            'path.*'=>'image|mimes:jpeg,png,jpg,gif,svg|max:5120'
+            'path.*'=>'image|mimes:jpeg,png,jpg,gif,svg|max:5120',
+            'logo_url' =>'sometimes|nullable',
+            'logo_url.*'=>'image|mimes:jpeg,png,jpg,gif,svg|max:5120',
+            'is_hot_deal' => 'boolean|sometimes|nullable'
         ]);
 
         if ($validator->fails()) {
@@ -125,18 +138,29 @@ class ProductController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }
+        $data = request(['name','category_id', 'description', 'price']);
 
 
         if($request->hasFile('path')){
             $filename = time() . '.' . $request->path->getClientOriginalExtension();
             $imageName= '/assets/images/products/'. $filename;
             request()->file('path')->move(public_path('assets/images/products'), $filename);
+            $data['path']=$imageName;
+
         }
 
-        $data = request(['name','category_id', 'description', 'price']);
-        $data['path']=$imageName;
+        if($request->hasFile('logo_url')){
+            $filename = time() . '.' . $request->logo_url->getClientOriginalExtension();
+            $logoName= '/assets/images/logo_product/'. $filename;
+            request()->file('logo_url')->move(public_path('assets/images/logo_product'), $filename);
+            $data['logo_url']=$logoName;
+        }
+
 
         Product::where('id', $id)->update($data);
+        Product::where('id', $id)->update([
+            'is_hot_deal'=>$request->is_hot_deal? $request->is_hot_deal:0,
+        ]);
 
         return redirect()->route('product.index');
     }
@@ -151,6 +175,7 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
         unlink(public_path($product->path));
+        unlink(public_path($product->logo_url));
         $product->delete();
         return redirect()->route('product.index');
     }

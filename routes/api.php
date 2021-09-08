@@ -32,14 +32,11 @@ Route::post('login', [ApiRegisterController::class, 'login']);
 Route::get('category', [ApiCategoryController::class, 'index']);
 Route::get('product', [ApiProductController::class, 'index']);
 Route::post('product', [ApiProductController::class, 'search']);
+Route::get('latest-products', [ApiProductController::class, 'latestProducts']);
+Route::get('hot-products', [ApiProductController::class, 'hotProducts']);
 Route::post('add-to-cart', [ApiCartController::class, 'addToCart']);
 Route::post('get-cart-content', [ApiCartController::class, 'getCartContent']);
 Route::post('remove-from-cart', [ApiCartController::class, 'removeFromCart']);
 Route::get('contact', [ApiContactController::class, 'index']);
 Route::post('add-profile', [ApiProfileController::class, 'addProfile']);
 Route::post('get-profile', [ApiProfileController::class, 'getProfile']);
-
-
-
-
-

@@ -22,6 +22,17 @@
         <div>
           <input type="file" class="form-control"  name="path">
         </div>
+        <label for="logo_url" class="form-label">Logo Image</label>
+        <div>
+          <input type="file" class="form-control"  name="logo_url">
+          <small style="color: red">* Logo Image appears only in the Application *</small>
+        </div>
+        <div class="form-check">
+          <label class="form-check-label" for="is_hot_deal">
+            Hot Deal 
+          </label>
+          <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault" name="is_hot_deal">
+        </div>
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>

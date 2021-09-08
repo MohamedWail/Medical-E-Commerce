@@ -13,12 +13,14 @@
           <thead>
               <tr>
                 <th>Name</th>
+                <th>Category Image</th>
                 <th>Actions</th>
               </tr>
           </thead>
           <tfoot>
               <tr>
                 <th>Name</th>
+                <th>Category Image</th>
                 <th>Actions</th>
               </tr>
           </tfoot>
@@ -26,6 +28,7 @@
               <tbody>
                   <tr>
                     <td>{{ $category->name }}</td>
+                    <td><img style="width: 15%;" src="{{URL::asset($category->image_url)}}"></td>
                     <td>
                       <form class="myform"  id="{{$category->id}}"  method="post"  action="{{(route('category.destroy',$category->id))}}">
                           @csrf

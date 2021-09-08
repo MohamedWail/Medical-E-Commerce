@@ -20,9 +20,10 @@ class ApiRegisterController extends BaseController
     public function register(Request $request) {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'email' => 'required|email',
-            'password' => 'required',
-            'number' => 'required|numeric'
+            'email' => 'required|email|confirmed',
+            'password' => 'required|confirmed',
+            'date_of_birth' => 'date|required',
+            'agreed_to_terms' => 'required|boolean'
         ]);
 
         if($validator->fails()){
@@ -31,9 +32,14 @@ class ApiRegisterController extends BaseController
 
         $data = $request->all();
         $data['password'] = bcrypt($data['password']);
-        $user = User::create($data);
-        $success['name'] =  $user->name;
-        return $this->sendResponse($success, 'User register successfully.','200');
+        if($data['agreed_to_terms']) {
+            $data['agreed_to_terms'] = 1;
+            $user = User::create($data);
+            return $this->sendResponse('', 'User register successfully.','200');
+        } else {
+            return $this->sendError('Please Agree on our terms.', ['error'=>'Unauthorised'], '400');
+        }
+        
 
     }
 
@@ -50,7 +56,7 @@ class ApiRegisterController extends BaseController
             return $this->sendResponse($success, 'User login successfully.', '200');
         } 
         else{ 
-            return $this->sendError('Unauthorised.', ['error'=>'Unauthorised'], '400');
+            
         } 
     }
 }

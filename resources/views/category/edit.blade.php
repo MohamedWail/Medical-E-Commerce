@@ -9,6 +9,11 @@
         <label for="name" class="form-label">Category Name</label>
         <input type="text" class="form-control" id="name" name="name" value="{{ $category->name }}">
       </div>
+      <label for="image_url" class="form-label">Category Image</label>
+      <div>
+        <input type="file" class="form-control"  name="image_url">
+        <img style="width: 15%;" src="{{URL::asset($category->image_url)}}">
+      </div>
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
   </div>

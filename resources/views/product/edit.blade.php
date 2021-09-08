@@ -23,8 +23,23 @@
         <input type="number" step="0.01" class="form-control" id="price" name="price" value="{{ $product->price }}">
         <label for="product_image" class="form-label">Product Image</label>
         <div>
-          <input type="file" class="form-control"  name="path">
+          <input type="file" class="form-control"  name="path" value="{{URL::asset($product->path)}}">
           <img style="width: 35%;" src="{{URL::asset($product->path)}}">
+        </div>
+        <div>
+          <input type="file" class="form-control"  name="logo_url" value="{{URL::asset($product->logo_url)}}"> 
+          <small style="color: red">* Logo Image appears only in the Application *</small>
+        </div>
+        <img style="width: 35%;" src="{{URL::asset($product->logo_url)}}">
+        <div class="form-check">
+          <label class="form-check-label" for="is_hot_deal">
+            Hot Deal 
+          </label>
+          <input 
+            class="form-check-input" 
+            type="checkbox" 
+            value="1" 
+            @if($product->is_Hot_deal==1) checked @endif id="flexCheckDefault" name="is_hot_deal">
         </div>
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>

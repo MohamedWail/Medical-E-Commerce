@@ -12,14 +12,14 @@
                 <tr>
                     <th>Name</th>
                     <th>Email</th>
-                    <th>Phone</th>
+                    <th>Date of birth</th>
                 </tr>
             </thead>
             <tfoot>
                 <tr>
                     <th>Name</th>
                     <th>Email</th>
-                    <th>Phone</th>
+                    <th>Date of birth</th>
                 </tr>
             </tfoot>
             @foreach ($users as $user )
@@ -27,7 +27,7 @@
                     <tr>
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
-                        <td>{{ $user->number }}</td>
+                        <td>{{ $user->date_of_birth }}</td>
                     </tr>
                 </tbody>
             @endforeach

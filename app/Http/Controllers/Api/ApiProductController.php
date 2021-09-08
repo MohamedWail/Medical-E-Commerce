@@ -22,6 +22,15 @@ class ApiProductController extends BaseController
     public function search(Request $request) {
         $products = Product::latest()->filter()->get();
         return $this->sendResponse($products, 'Products found successfully.', '200');
+    }
 
+    public function latestProducts() {
+        $products =  ProductResource::collection(Product::latest()->get());
+        return $this->sendResponse($products, 'Latest Products obtained successfully.', '200');
+    }
+
+    public function hotProducts() {
+        $products = ProductResource::collection(Product::where('is_Hot_deal', '1')->get());
+        return $this->sendResponse($products, 'Hot Products obtained successfully.', '200');
     }
 }

@@ -22,6 +22,8 @@ class CategoryController extends Controller
     public function store(Request $request) {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
+            'image_url'=>'sometimes|nullable',
+            'image_url.*'=>'image|mimes:jpeg,png,jpg,gif,svg|max:5120'
         ]);
 
         if ($validator->fails()) {
@@ -32,7 +34,16 @@ class CategoryController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }
+
+        if($request->hasFile('image_url')){
+            $filename = time() . '.' . $request->image_url->getClientOriginalExtension();
+            $imageName= '/assets/images/categories/'. $filename;
+            request()->file('image_url')->move(public_path('assets/images/categories'), $filename);
+        }
+
         $data = $request->all();
+        $data['image_url']=$imageName;
+
 
         Category::create($data);
 
